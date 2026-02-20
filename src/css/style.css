@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+:root {
+  /* Colors */
+
+  /* Primary */
+  --Blue500: hsl(220, 98%, 61%);
+  --CheckBackground: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%));
+
+  /* Neutral */
+
+  /* Light Theme */
+  --Gray50: hsl(0, 0%, 98%);
+  --Purple300: hsl(234, 39%, 85%);
+  --Gray300: hsl(233, 11%, 84%);
+  --Gray600: hsl(236, 9%, 61%);
+  --Navy850: hsl(235, 19%, 35%);
+
+  /* Dark Theme */
+  --Navy950: hsl(235, 21%, 11%);
+  --Navy900: hsl(235, 24%, 19%);
+  --Purple300: hsl(234, 39%, 85%);
+  --Purple100: hsl(236, 33%, 92%); /*hover*/
+  --Purple600: hsl(235, 16%, 43%);
+  --Purple700: hsl(233, 14%, 35%);
+  --Purple800: hsl(237, 14%, 26%);
+  --Gray600: hsl(236, 9%, 61%);
+}
+
+* {
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-family: 'Josefin Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  font-size: 18px;
+  background-color: var(--Gray50);
+  color: var(--DarkText);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.display-flex {
+  display: flex;
+}
+.direction-column {
+  flex-direction: column;
+}
+.direction-row {
+  flex-direction: row;
+}
+.align-items-center {
+  align-items: center;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-space-between {
+  justify-content: space-between;
+}
+.border-radius {
+  border-radius: 0.3rem;
+}
