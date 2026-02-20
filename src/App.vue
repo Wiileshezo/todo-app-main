@@ -1,7 +1,27 @@
-<script setup></script>
+<script setup>
+import TheFooter from './components/layout/TheFooter.vue'
+import TheHeader from './components/layout/TheHeader.vue'
+import TodoItem from './components/todo-list/TodoItem.vue'
+import TodoInput from './components/todo-list/TodoInput.vue'
+</script>
 
 <template>
-  <h1>TODO</h1>
+  <header>
+    <TheHeader />
+    <TodoInput></TodoInput>
+    <todo-item></todo-item>
+  </header>
+  <TheFooter />
 </template>
 
-<style scoped></style>
+<style>
+header {
+  background-image: url('@/images/bg-desktop-light.jpg');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: fixed;
+  height: 40vh;
+  width: 100vw;
+}
+</style>
