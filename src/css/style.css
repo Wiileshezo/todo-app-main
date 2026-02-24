@@ -42,6 +42,7 @@ body {
   font-size: 18px;
   background-color: var(--Gray50);
   color: var(--DarkText);
+  overflow-y: scroll;
 }
 .cursor-pointer {
   cursor: pointer;

@@ -1,5 +1,6 @@
 <script setup>
-import { useTodoLists } from '@/stores/counter'
+import TodoFilters from './TodoFilters.vue'
+import { useTodoLists } from '@/stores/todoStore'
 
 const todoLists = useTodoLists()
 </script>
@@ -15,13 +16,14 @@ const todoLists = useTodoLists()
           <p>{{ todo.title }}</p>
         </base-card>
       </li>
+      <todo-filters></todo-filters>
     </ul>
   </div>
 </template>
 
 <style scoped>
 .todo-container {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   width: fit-content;
 }

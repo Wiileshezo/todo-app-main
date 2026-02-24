@@ -1,7 +1,45 @@
 <script setup></script>
 
 <template>
-  <h1>the footer</h1>
+  <p class="drag-paragraph">Drag and drop to reorder list</p>
+  <footer>
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="https://github.com/Wiileshezo">Wiileshezo</a>.
+    </div>
+  </footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+.drag-paragraph {
+  margin-top: 3rem;
+}
+p {
+  color: var(--Gray600);
+  text-align: center;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+.attribution {
+  font-size: 0.6rem;
+  text-align: center;
+  padding-block: 3rem;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+@media screen and (min-width: 1000px) {
+  .attribution {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .attribution {
+    font-size: 1rem;
+  }
+}
+</style>
