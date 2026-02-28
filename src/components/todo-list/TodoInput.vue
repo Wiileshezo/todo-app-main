@@ -16,6 +16,7 @@
 <style scoped>
 .input-card {
   z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 input {
   font-family: 'Josefin Sans', sans-serif;
