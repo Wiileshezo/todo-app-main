@@ -7,12 +7,10 @@ const todoLists = useTodoLists()
 
 <template>
   <div class="display-flex justify-content-center border-radius">
-    <ul
-      class="todo-container display-flex align-items-center justify-content-center direction-column"
-    >
-      <li v-for="todo in todoLists.todos" :key="todo.id">
+    <ul class="todo-container display-flex justify-content-center direction-column border-radius">
+      <li v-for="todo in todoLists.todos" :key="todo.id" class="border-radius">
         <base-card class="border-bottom">
-          <input type="radio" />
+          <base-button mode="circle"></base-button>
           <p>{{ todo.title }}</p>
         </base-card>
       </li>
@@ -23,12 +21,13 @@ const todoLists = useTodoLists()
 
 <style scoped>
 .todo-container {
+  background-color: var(--card-bg);
   margin-top: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  width: fit-content;
+  z-index: 999;
 }
 .border-bottom {
-  border-bottom: solid 1px var(--Gray300);
+  border-bottom: solid 1px var(--divider);
 }
 
 ul {

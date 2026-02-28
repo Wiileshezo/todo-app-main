@@ -25,6 +25,24 @@
   --Purple700: hsl(233, 14%, 35%);
   --Purple800: hsl(237, 14%, 26%);
   --Gray600: hsl(236, 9%, 61%);
+
+  --bg-color: hsl(236, 33%, 92%);
+  --card-bg: hsl(236, 33%, 92%);
+  --text-color: hsl(235, 19%, 35%);
+  --divider: hsl(233, 11%, 84%);
+  --bg-image: url('@/images/bg-desktop-light.jpg');
+}
+
+.dark {
+  --bg-color: hsl(235, 21%, 11%);
+  --card-bg: hsl(235, 24%, 19%);
+  --text-color: hsl(234, 39%, 85%);
+  --divider: hsl(237, 14%, 26%);
+  --bg-image: url('@/images/bg-desktop-dark.jpg');
+}
+
+.card {
+  background-color: var(--card-bg);
 }
 
 * {
@@ -40,9 +58,9 @@ html {
 
 body {
   font-size: 18px;
-  background-color: var(--Gray50);
-  color: var(--DarkText);
-  overflow-y: scroll;
+  background-color: var(--bg-color);
+  background-size: cover;
+  color: var(--text-color);
 }
 .cursor-pointer {
   cursor: pointer;

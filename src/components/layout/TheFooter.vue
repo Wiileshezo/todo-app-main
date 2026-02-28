@@ -14,6 +14,7 @@
 <style scoped>
 .drag-paragraph {
   margin-top: 3rem;
+  z-index: 999;
 }
 p {
   color: var(--Gray600);
@@ -21,6 +22,7 @@ p {
 }
 
 footer {
+  z-index: 999;
   display: flex;
   justify-content: center;
 }

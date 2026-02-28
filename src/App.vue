@@ -6,21 +6,10 @@ import TodoInput from './components/todo-list/TodoInput.vue'
 </script>
 
 <template>
-  <header>
-    <TheHeader />
-    <TodoInput></TodoInput>
-    <todo-list></todo-list>
-    <TheFooter />
-  </header>
+  <TheHeader />
+  <TodoInput></TodoInput>
+  <todo-list></todo-list>
+  <TheFooter />
 </template>
 
-<style>
-header {
-  background-image: url('@/images/bg-desktop-light.jpg');
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
-  height: 40vh;
-  width: 100vw;
-}
-</style>
+<style></style>
