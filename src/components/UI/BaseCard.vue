@@ -8,7 +8,7 @@
 
 <style scoped>
 .card {
-  padding: 1.2rem;
+  padding: 1rem;
   width: 80vw;
   background: var(--card-bg);
   gap: 1rem;
@@ -17,6 +17,7 @@
 
 @media screen and (min-width: 768px) {
   .card {
+    padding: 1.2rem;
     width: 50vw;
   }
 }

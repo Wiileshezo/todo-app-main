@@ -38,9 +38,9 @@ onMounted(() => {
   <div class="display-flex align-items-center direction-column">
     <div class="header display-flex align-items-center justify-content-center">
       <h1 class="title">T O D O</h1>
-      <button class="theme-btn" @click="toggleTheme">
+      <base-button class="theme-btn" @click="toggleTheme">
         <img :src="themeIcon" alt="theme icon" />
-      </button>
+      </base-button>
     </div>
   </div>
 </template>
@@ -52,7 +52,7 @@ onMounted(() => {
   position: fixed;
   background-position: top center;
   background-repeat: no-repeat;
-  height: 40vh;
+  height: 45vh;
   width: 100vw;
 }
 
@@ -70,9 +70,13 @@ onMounted(() => {
 .theme-btn {
   border: none;
   background: transparent;
+  transition: 0.3s ease;
 }
 
 @media screen and (min-width: 768px) {
+  .container-background {
+    height: 40vh;
+  }
   .header {
     width: 50vw;
   }
