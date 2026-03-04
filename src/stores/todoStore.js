@@ -7,33 +7,53 @@ export const useTodoLists = defineStore('todo', () => {
       id: '00',
       title: 'Complete online Javascript course',
       isComplete: false,
+      isActive: false,
     },
     {
       id: '01',
       title: 'Jog around the park 3x',
       isComplete: false,
+      isArchived: false,
     },
     {
       id: '02',
       title: '10 minutes meditation',
       isComplete: false,
+      isActive: false,
     },
     {
       id: '03',
       title: 'Read for 1 hour',
       isComplete: false,
+      isActive: false,
     },
     {
       id: '04',
       title: 'Pick up groceries',
       isComplete: false,
+      isActive: false,
     },
     {
       id: '05',
       title: 'Complete Todo App on Frontend Mentor',
       isComplete: false,
+      isActive: false,
     },
   ])
 
-  return { todos }
+  function addNewTodo(newTodo) {
+    if (!newTodo.trim()) return
+
+    todos.value.unshift({
+      id: Date.now(),
+      title: newTodo.trim(),
+      isComplete: false,
+      isActive: false,
+    })
+  }
+
+  return {
+    todos,
+    addNewTodo,
+  }
 })

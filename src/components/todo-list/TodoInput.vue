@@ -1,16 +1,31 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import { useTodoLists } from '@/stores/todoStore'
+
+const newTodo = ref('')
+const todoLists = useTodoLists()
+
+function submitTodo() {
+  todoLists.addNewTodo(newTodo.value)
+  newTodo.value = ''
+}
+</script>
 
 <template>
-  <div class="input-card display-flex align-items-center justify-content-center direction-column">
-    <base-card class="display-flex direction-row border-radius add-new-task">
-      <base-button mode="circle"></base-button>
-      <input
-        type="text"
-        placeholder="Create a new todo"
-        class="text-input display-flex align-items-center"
-      />
-    </base-card>
-  </div>
+  <form @submit.prevent="submitTodo">
+    <div class="input-card display-flex align-items-center justify-content-center direction-column">
+      <base-card class="display-flex direction-row border-radius add-new-task">
+        <base-button mode="circle" @click="submitTodo()"></base-button>
+        <input
+          type="text"
+          placeholder="Create a new todo"
+          class="text-input display-flex align-items-center"
+          v-model="newTodo"
+          @keyup.enter="submitTodo"
+        />
+      </base-card>
+    </div>
+  </form>
 </template>
 
 <style scoped>
@@ -35,7 +50,6 @@ input::placeholder {
   outline: none;
   width: 70vw;
   box-sizing: border-box;
-  transition: 0.3s ease;
 }
 
 @media screen and (min-width: 768px) {
