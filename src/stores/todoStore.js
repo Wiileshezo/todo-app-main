@@ -52,8 +52,16 @@ export const useTodoLists = defineStore('todo', () => {
     })
   }
 
+  function deleteTodo(id) {
+    const deletedTodo = todos.value.findIndex((t) => t.id === id)
+    if (deletedTodo !== -1) {
+      todos.value.splice(deletedTodo, 1)
+    }
+  }
+
   return {
     todos,
     addNewTodo,
+    deleteTodo,
   }
 })
