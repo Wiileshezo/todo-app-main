@@ -31,6 +31,7 @@
   --text-color: hsl(235, 19%, 35%);
   --divider: hsl(233, 11%, 84%);
   --bg-image: url('@/images/bg-desktop-light.jpg');
+  --isComplete: hsl(236, 9%, 61%);
 }
 
 .dark {
@@ -39,6 +40,7 @@
   --text-color: hsl(234, 39%, 85%);
   --divider: hsl(237, 14%, 26%);
   --bg-image: url('@/images/bg-desktop-dark.jpg');
+  --isComplete: hsl(235, 19%, 35%);
 }
 
 .card {
