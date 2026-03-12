@@ -59,9 +59,17 @@ export const useTodoLists = defineStore('todo', () => {
     }
   }
 
+  function toggleComplete(id) {
+    const completed = todos.value.find((t) => t.id === id)
+    if (!completed) return
+
+    completed.isComplete = !completed.isComplete
+  }
+
   return {
     todos,
     addNewTodo,
     deleteTodo,
+    toggleComplete,
   }
 })

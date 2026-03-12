@@ -10,10 +10,16 @@ const todoLists = useTodoLists()
       <li v-for="todo in todoLists.todos" :key="todo.id">
         <base-card class="border-bottom li-todo border-radius align-items-center">
           <div class="display-flex align-items-center gap1">
-            <base-button mode="circle"></base-button>
-            <p>{{ todo.title }}</p>
+            <base-button
+              mode="circle"
+              @click="todoLists.toggleComplete(todo.id)"
+              :class="{ active: todo.isComplete }"
+            ></base-button>
+            <p :class="{ completed: todo.isComplete }">
+              {{ todo.title }}
+            </p>
           </div>
-          <base-button @click="todoLists.deleteTodo(todo.id)">
+          <base-button class="delete-btn" @click="todoLists.deleteTodo(todo.id)">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
               <path
                 fill="#494C6B"
@@ -39,12 +45,39 @@ const todoLists = useTodoLists()
   border-bottom: solid 1px var(--divider);
 }
 
+ul {
+  list-style: none;
+}
+
 .li-todo {
   justify-content: space-between;
   gap: 1rem;
 }
 
-ul {
-  list-style: none;
+.completed {
+  text-decoration-line: line-through;
+  color: var(--isComplete);
+}
+.active {
+  background-image:
+    url('@/images/icon-check.svg'),
+    linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.delete-btn {
+  opacity: 1;
+}
+
+@media screen and (min-width: 770px) {
+  .delete-btn {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .li-todo:hover .delete-btn {
+    opacity: 1;
+  }
 }
 </style>
