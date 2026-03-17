@@ -66,10 +66,43 @@ export const useTodoLists = defineStore('todo', () => {
     completed.isComplete = !completed.isComplete
   }
 
+  function activeTodos(todos) {
+    let active = []
+    todos.forEach((todo) => {
+      if (!todo.isComplete) {
+        active.push(todo)
+      } else {
+        console.log("there's no active item")
+      }
+    })
+    console.log('new active array', active)
+    return active
+  }
+
+  function completeTodos(todos) {
+    let complete = []
+    todos.forEach((todo) => {
+      if (todo.isComplete) {
+        complete.push(todo)
+      } else {
+        console.log("there's no completed item")
+      }
+    })
+    console.log('new completed array', complete)
+    return complete
+  }
+
+  function clearCompleted() {
+    todos.value = todos.value.filter((todo) => !todo.isComplete)
+  }
+
   return {
     todos,
     addNewTodo,
     deleteTodo,
     toggleComplete,
+    activeTodos,
+    completeTodos,
+    clearCompleted,
   }
 })
