@@ -1,6 +1,7 @@
 <script setup>
 import { useTodoLists } from '@/stores/todoStore'
 import { computed } from 'vue'
+// import TodoList from './TodoList.vue'
 
 const todoLists = useTodoLists()
 
@@ -26,9 +27,23 @@ const itemLeft = computed(() => (activeCount.value === 1 ? 'item left' : 'items 
     <base-card class="filter-container display-flex border-radius">
       <p class="item-left">{{ activeCount }} {{ itemLeft }}</p>
       <div class="display-flex direction-row align-items-center desktop-middle-container">
-        <base-button>All</base-button>
-        <base-button @click="todoLists.activeTodos(todoLists.todos)">Active</base-button>
-        <base-button @click="todoLists.completeTodos(todoLists.todos)">Completed</base-button>
+        <base-button
+          :class="{ activeBtn: todoLists.filter === 'all' }"
+          @click="todoLists.setFilter('all')"
+        >
+          All
+        </base-button>
+        <base-button
+          :class="{ activeBtn: todoLists.filter === 'active' }"
+          @click="todoLists.setFilter('active')"
+        >
+          Active
+        </base-button>
+        <base-button
+          :class="{ activeBtn: todoLists.filter === 'completed' }"
+          @click="todoLists.setFilter('completed')"
+          >Completed</base-button
+        >
       </div>
       <base-button @click="todoLists.clearCompleted">Clear Completed</base-button>
     </base-card>
@@ -39,9 +54,21 @@ const itemLeft = computed(() => (activeCount.value === 1 ? 'item left' : 'items 
       class="mobile-middle-container display-flex direction-row align-items-center border-radius"
     >
       <div class="display-flex direction-row align-items-center">
-        <base-button>All</base-button>
-        <base-button>Active</base-button>
-        <base-button>Completed</base-button>
+        <base-button
+          :class="{ activeBtn: todoLists.filter === 'all' }"
+          @click="todoLists.setFilter('all')"
+          >All</base-button
+        >
+        <base-button
+          :class="{ activeBtn: todoLists.filter === 'active' }"
+          @click="todoLists.setFilter('active')"
+          >Active</base-button
+        >
+        <base-button
+          :class="{ activeBtn: todoLists.filter === 'completed' }"
+          @click="todoLists.setFilter('completed')"
+          >Completed</base-button
+        >
       </div>
     </base-card>
   </div>
@@ -68,6 +95,9 @@ div {
 .item-left {
   color: var(--Navy850);
   font-size: 0.8rem;
+}
+.activeBtn {
+  color: var(--Blue500);
 }
 @media (min-width: 768px) {
   .mobile-middle-container {

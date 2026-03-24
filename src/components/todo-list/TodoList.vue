@@ -6,8 +6,11 @@ const todoLists = useTodoLists()
 
 <template>
   <div class="display-flex justify-content-center border-radius">
-    <ul class="todo-container display-flex justify-content-center direction-column border-radius">
-      <li v-for="todo in todoLists.todos" :key="todo.id">
+    <ul
+      v-if="!todoLists.isEmpty"
+      class="todo-container margin-top display-flex justify-content-center direction-column border-radius"
+    >
+      <li v-for="todo in todoLists.filteredTodos" :key="todo.id">
         <base-card class="border-bottom li-todo border-radius align-items-center">
           <div class="display-flex align-items-center gap1">
             <base-button
@@ -30,18 +33,24 @@ const todoLists = useTodoLists()
           </base-button>
         </base-card>
       </li>
-      <!-- <li></li> -->
     </ul>
+    <base-card v-else class="no-item margin-top display-flex justify-content-center border-radius">
+      <p>There is no item</p>
+    </base-card>
   </div>
 </template>
 
 <style scoped>
 .todo-container {
   background-color: var(--card-bg);
-  margin-top: 1.5rem;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
   z-index: 999;
 }
+
+.margin-top {
+  margin-top: 1.5rem;
+}
+
 .border-bottom {
   border-bottom: solid 1px var(--divider);
 }
@@ -69,6 +78,10 @@ ul {
 
 .delete-btn {
   opacity: 1;
+}
+
+.no-item {
+  color: var(--Navy850);
 }
 
 @media screen and (min-width: 770px) {

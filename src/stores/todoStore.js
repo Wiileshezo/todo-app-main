@@ -1,7 +1,9 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { computed } from 'vue'
 
 export const useTodoLists = defineStore('todo', () => {
+  // state
   const todos = ref([
     {
       id: '00',
@@ -40,7 +42,9 @@ export const useTodoLists = defineStore('todo', () => {
       isActive: false,
     },
   ])
+  const filter = ref('all') // all | active | completed
 
+  // actions
   function addNewTodo(newTodo) {
     if (!newTodo.trim()) return
 
@@ -50,6 +54,8 @@ export const useTodoLists = defineStore('todo', () => {
       isComplete: false,
       isActive: false,
     })
+
+    setFilter('all')
   }
 
   function deleteTodo(id) {
@@ -71,11 +77,8 @@ export const useTodoLists = defineStore('todo', () => {
     todos.forEach((todo) => {
       if (!todo.isComplete) {
         active.push(todo)
-      } else {
-        console.log("there's no active item")
       }
     })
-    console.log('new active array', active)
     return active
   }
 
@@ -84,11 +87,9 @@ export const useTodoLists = defineStore('todo', () => {
     todos.forEach((todo) => {
       if (todo.isComplete) {
         complete.push(todo)
-      } else {
-        console.log("there's no completed item")
       }
     })
-    console.log('new completed array', complete)
+
     return complete
   }
 
@@ -96,13 +97,41 @@ export const useTodoLists = defineStore('todo', () => {
     todos.value = todos.value.filter((todo) => !todo.isComplete)
   }
 
+  function setFilter(type) {
+    filter.value = type
+  }
+
+  // computed
+  const filteredTodos = computed(() => {
+    if (filter.value === 'active') {
+      return activeTodos(todos.value)
+    }
+
+    if (filter.value === 'completed') {
+      return completeTodos(todos.value)
+    }
+
+    return todos.value
+  })
+
+  const isEmpty = computed(() => filteredTodos.value.length === 0)
+
   return {
+    // state
     todos,
+    filter,
+
+    // actions
     addNewTodo,
     deleteTodo,
     toggleComplete,
     activeTodos,
     completeTodos,
     clearCompleted,
+    setFilter,
+
+    // computed
+    filteredTodos,
+    isEmpty,
   }
 })
