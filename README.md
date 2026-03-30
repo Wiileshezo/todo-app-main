@@ -6,7 +6,7 @@ This is a solution to the **Todo App** challenge on Frontend Mentor. The challen
 
 ## 🔗 Live Demo
 
-https://wiileshezo.github.io/
+https://wiileshezo.github.io/todo-app-main/
 
 ---
 
@@ -94,7 +94,7 @@ Future improvements could include:
 To run this project locally:
 
 ```bash
-git clone https://github.com/wiileshezo/todo-app.git
+git clone https://github.com/Wiileshezo/todo-app-main
 cd todo-app
 npm install
 npm run dev
