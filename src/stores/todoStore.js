@@ -89,7 +89,6 @@ export const useTodoLists = defineStore('todo', () => {
         complete.push(todo)
       }
     })
-
     return complete
   }
 
@@ -99,6 +98,20 @@ export const useTodoLists = defineStore('todo', () => {
 
   function setFilter(type) {
     filter.value = type
+  }
+
+  function moveTodo(draggedId, targetId, position) {
+    const fromIndex = todos.value.findIndex((t) => t.id === draggedId)
+    const toIndex = todos.value.findIndex((t) => t.id === targetId)
+
+    const item = todos.value[fromIndex]
+
+    todos.value.splice(fromIndex, 1)
+
+    let newIndex = toIndex
+    if (position === 'bottom') newIndex++
+
+    todos.value.splice(newIndex, 0, item)
   }
 
   // computed
@@ -129,6 +142,8 @@ export const useTodoLists = defineStore('todo', () => {
     completeTodos,
     clearCompleted,
     setFilter,
+
+    moveTodo,
 
     // computed
     filteredTodos,

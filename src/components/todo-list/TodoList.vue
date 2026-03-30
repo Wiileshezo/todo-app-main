@@ -1,7 +1,36 @@
 <script setup>
+import { ref } from 'vue'
 import { useTodoLists } from '@/stores/todoStore'
 
 const todoLists = useTodoLists()
+
+const draggedId = ref(null)
+const hoverId = ref(null)
+const dropPosition = ref(null)
+
+function dragStart(todo) {
+  draggedId.value = todo.id
+}
+
+function dragOver(e, todo) {
+  const rect = e.target.getBoundingClientRect()
+  const offset = e.clientY - rect.top
+
+  hoverId.value = todo.id
+  dropPosition.value = offset > rect.height / 2 ? 'bottom' : 'top'
+}
+
+function dropItem(todo) {
+  todoLists.moveTodo(draggedId.value, todo.id, dropPosition.value)
+
+  resetDrag()
+}
+
+function resetDrag() {
+  draggedId.value = null
+  hoverId.value = null
+  dropPosition.value = null
+}
 </script>
 
 <template>
@@ -10,7 +39,21 @@ const todoLists = useTodoLists()
       v-if="!todoLists.isEmpty"
       class="todo-container margin-top display-flex justify-content-center direction-column border-radius"
     >
-      <li v-for="todo in todoLists.filteredTodos" :key="todo.id">
+      <li
+        v-for="todo in todoLists.filteredTodos"
+        :key="todo.id"
+        draggable="true"
+        @dragstart="dragStart(todo)"
+        @dragover.prevent="dragOver($event, todo)"
+        @drop="dropItem(todo)"
+        @dragend="resetDrag"
+        :class="{ dragging: draggedId === todo.id }"
+      >
+        <!--
+        @touchstart="dragStart(todo)"
+        @touchmove="dropItem(todo)"
+        @touchend="dragOver($event, todo)"
+      -->
         <base-card class="border-bottom li-todo border-radius align-items-center">
           <div class="display-flex align-items-center gap1">
             <base-button
@@ -64,6 +107,18 @@ ul {
   gap: 1rem;
 }
 
+li.dragging {
+  opacity: 0.8;
+  transform: scale(1.05);
+  cursor: grabbing;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+p {
+  font-size: calc(0.4rem + 6px);
+}
+
 .completed {
   text-decoration-line: line-through;
   color: var(--isComplete);
@@ -79,6 +134,9 @@ ul {
 .delete-btn {
   opacity: 1;
 }
+.delete-btn svg {
+  scale: 0.6;
+}
 
 .no-item {
   color: var(--Navy850);
@@ -92,6 +150,9 @@ ul {
 
   .li-todo:hover .delete-btn {
     opacity: 1;
+  }
+  p {
+    font-size: calc(0.5rem + 10px);
   }
 }
 </style>
