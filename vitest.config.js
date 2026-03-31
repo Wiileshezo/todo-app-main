@@ -5,7 +5,8 @@ import viteConfig from './vite.config'
 export default mergeConfig(
   viteConfig,
   defineConfig({
-    publicPath: '/todo-app-main',
+    transpileDependencies: true,
+    publicPath: '/todo-app-main/',
     test: {
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/**'],
