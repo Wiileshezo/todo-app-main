@@ -6,8 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  transpileDependencies: true,
-  publicPath: '/todo-app-main/',
+  base: '/todo-app-main/',
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
@@ -15,3 +14,4 @@ export default defineConfig({
     },
   },
 })
+// transpileDependencies: true,
