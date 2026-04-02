@@ -8,6 +8,7 @@ const draggedId = ref(null)
 const hoverId = ref(null)
 const dropPosition = ref(null)
 
+// ---------- DESKTOP ----------
 function dragStart(todo) {
   draggedId.value = todo.id
 }
@@ -31,6 +32,34 @@ function resetDrag() {
   hoverId.value = null
   dropPosition.value = null
 }
+
+// ---------- MOBILE (TOUCH) ----------
+
+function touchStart(todo) {
+  draggedId.value = todo.id
+}
+
+function touchMove(e) {
+  const touch = e.touches[0]
+  const element = document.elementFromPoint(touch.clientX, touch.clientY)
+  if (!element) return
+
+  const li = element.closest('li[data-id]')
+  if (!li) return
+
+  hoverId.value = Number(li.dataset.id)
+
+  const rect = li.getBoundingClientRect()
+  const offset = touch.clientY - rect.top
+  dropPosition.value = offset > rect.height / 2 ? 'bottom' : 'top'
+}
+
+function touchEnd() {
+  if (draggedId.value && hoverId.value) {
+    todoLists.moveTodo(draggedId.value, hoverId.value, dropPosition.value)
+  }
+  resetDrag()
+}
 </script>
 
 <template>
@@ -47,13 +76,11 @@ function resetDrag() {
         @dragover.prevent="dragOver($event, todo)"
         @drop="dropItem(todo)"
         @dragend="resetDrag"
+        @touchstart="touchStart(todo)"
+        @touchmove.prevent="touchMove"
+        @touchend="touchEnd"
         :class="{ dragging: draggedId === todo.id }"
       >
-        <!--
-        @touchstart="dragStart(todo)"
-        @touchmove="dropItem(todo)"
-        @touchend="dragOver($event, todo)"
-      -->
         <base-card class="border-bottom li-todo border-radius align-items-center">
           <div class="display-flex align-items-center gap1">
             <base-button
