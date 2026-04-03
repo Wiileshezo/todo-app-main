@@ -45,8 +45,6 @@ Users should be able to:
 - **JavaScript (ES6+)**
 - **HTML5**
 - **CSS3**
-- **Flexbox**
-- **CSS Grid**
 - **Local Storage** (to persist todos)
 
 ---
